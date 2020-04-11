@@ -1,0 +1,19 @@
+{
+  "name": "good-readme-generator",
+  "version": "1.0.0",
+  "description": "A command-line application that dynamically generates a README.md from a user's input",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MwansaMwango/good-readme-generator.git"
+  },
+  "author": "Mwansa Mwango",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MwansaMwango/good-readme-generator/issues"
+  },
+  "homepage": "https://github.com/MwansaMwango/good-readme-generator#readme"
+}
