@@ -54,13 +54,13 @@ function promptUser() {
     },
     {
       type: "input",
-      name: "githubEmail",
-      message: "Enter contact email for questions?"
+      name: "email",
+      message: "Enter contact email where questions can be sent?"
     },
   ]);
 }
 // To DO Section below to be updated from HTML to MarkDown 
-async function generateReadMe(answers) {
+async function generateReadMe() {
 /**badges:
  * repos 
 data.update_at
@@ -72,13 +72,39 @@ data.owner.avatar_url
  * users
 data.email 
 **/
-  let readMeData = `
-  # ${projectTitle}
-  [![Github Update](${updatedBadgeUrl})]
-  [![Github Forks](${forksBadgeUrl})]
 
-  ## 
-`;
+// let readMeData = `
+// # ${answers.projectTitle}
+// [![Github Update](${updatedBadgeUrl})]
+// [![Github Forks](${forksBadgeUrl})]
+
+// ## Decription
+// ${answers.decription}
+
+// ## Installation
+// ${answers.installation}
+// ## Usage
+// ${answers.usage}
+
+// ## Licence
+// ${answers.licence}
+
+// ## Contribution
+// ${answers.contribution}
+
+// ## Tests
+// ${answers.tests}
+
+// ## Have any questions?
+// ![Github profile picture](${profPicUrl})
+// [Github Link](${githubUrl})
+// [Email](${email})
+// `;
+// writeFileAsync ('MyReadME.md', readMeData,(err, data => {
+// if (err) throw err;
+// console.log ("Successfully created readme file");  
+// }))
+
 }
 
 async function init() {
@@ -95,14 +121,54 @@ async function init() {
     let updatedAt = new Date (githubRepoData.updated_at);
     updatedAt = updatedAt.getDate()+'-' + (updatedAt.getMonth()+1) + '-'+updatedAt.getFullYear();
     console.log(updatedAt);
-    const updatedBadgeUrl = `https://img.shields.io/static/v1?label=Updated%20at&message=${updatedAt}&color=blue?style=social&logo=github`
+    const updatedBadgeUrl = `https://img.shields.io/static/v1?label=Updated%20at&message=${updatedAt}&color=blue&?style=social&logo=github`
     console.log(updatedBadgeUrl);
     
     const forks = githubRepoData.forks;
-    const forksBadgeUrl = `https://img.shields.io/static/v1?label=Forks&message=${forks}&color=green?style=social&logo=github`
+    const forksBadgeUrl = `https://img.shields.io/static/v1?label=Forks&message=${forks}&color=green&?style=social&logo=github`
     console.log(forksBadgeUrl);
     
     
+    const profPicUrl = githubRepoData.owner.avatar_url;
+    const githubUrl = githubRepoData.owner.url;
+    const email = githubRepoData.email;
+    
+    // Generate readme content data
+
+    let readMeData = 
+`
+# ${answers.projectTitle} - ${answers.githubRepo}
+![Github Update](${updatedBadgeUrl})
+![Github Forks](${forksBadgeUrl})
+
+## Description
+${answers.decription}
+
+## Installation
+${answers.installation}
+## Usage
+${answers.usage}
+
+## Licence
+${answers.licence}
+
+## Contribution
+${answers.contribution}
+
+## Tests
+${answers.tests}
+
+## Have any questions?
+![Github profile picture](${profPicUrl})
+* [Github Link](${githubUrl})
+* [Email](${email})
+`;
+    //Write to new readme file
+    writeFileAsync ('MyReadME.md', readMeData, (err) => {
+    if (err) throw err;
+    console.log ("Successfully created readme file");  
+    });
+
   } catch(err) {
     console.error(err);
 
