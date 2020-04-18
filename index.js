@@ -125,7 +125,7 @@ ${answers.tests}
 ## Have any questions?
 ![Github profile picture](${profPicUrl})
 * [Github Link](${githubUrl})
-* [Email](${answers.email})
+* Email: ${answers.email}
 `;
 
     //Write to new readme file
